@@ -1,0 +1,50 @@
+getgenv().grab = true
+
+getgenv().drops = true
+
+getgenv().speed = true
+
+getgenv().autobuydropper = true
+
+getgenv().merge = true
+
+spawn(function()
+while getgenv().grab == true do
+local args = {[1] = 1}
+game:GetService("ReplicatedStorage").GTycoonClient.Remotes.GrabDrops:FireServer(unpack(args))
+    wait()
+    end
+end)
+
+spawn(function()
+while getgenv().drops == true do
+game:GetService("ReplicatedStorage").GTycoonClient.Remotes.DepositDrops:FireServer()
+wait() 
+    end
+end)
+
+spawn(function()
+while getgenv().speed == true do
+local args = {[1] = 1}
+game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuySpeed:FireServer(unpack(args))
+wait(60)
+    end
+end)
+
+spawn(function()
+while getgenv().autobuydropper == true do
+
+local args = {[1] = 5}
+
+game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuyDropper:FireServer(unpack(args))
+wait(5)
+    end
+end)
+
+spawn(function()
+while getgenv().merge == true do
+
+game:GetService("ReplicatedStorage").GTycoonClient.Remotes.MergeDroppers:FireServer()
+wait(5)
+    end
+end)
